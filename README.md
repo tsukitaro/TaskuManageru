@@ -16,7 +16,7 @@ basic task manager to handle basic task functions as:
 
 - [x] create Task with addTask[taskName] :rocket: **implemented** :sparkles:
 - [x] List tasks :rocket: **implemented** :sparkles:
-- [ ] Update and delete tasks :construction: **in process** :hourglass_flowing_sand:
+- [x] Update and delete tasks :rocket: **implemented** :sparkles::
 - [ ] List tasks that are done :zzz: **not yet** :egg:
 - [ ] List tasks that are undone :zzz: **not yet** :egg:
 - [ ] List tasks that are in progress :zzz: **not yet** :egg:
