@@ -3,12 +3,98 @@
  */
 package com.masumera;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+//import com.masumera.body.ManageTask;
+import com.masumera.body.Task;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+  public String getGreeting() {
+    return "Hello World!";
+  }
+
+  private static ArrayList<Task> tasks = new ArrayList<>();
+  private static int nextId = 1; // generate the unique IDs
+
+  public static void main(String[] args) {
+    // System.out.println(new App().getGreeting());
+    //if (args.length == 0) {
+    //  System.out.println("Use: java App <command> [arguments]");
+    //  System.out.println("Commands availables");
+    //  System.out.println("add <description> - create new taks");
+    //  System.out.println("list              - List all tasks");
+    //}
+
+    /*
+     * usando args pero necesita una implementacion de persistencia
+     */
+    //
+    //String command = args[0];
+    //
+    //switch (command) {
+    //  case "add":
+    //    String description = args[1];
+    //    addTask(description);
+    //    break;
+    //  case "list":
+    //    listTask();
+    //    break;
+    //}
+
+
+    Scanner scanner = new Scanner(System.in);
+    while (true) {
+      showMenu();
+      int option = scanner.nextInt();
+      scanner.nextLine();
+
+      switch (option) {
+        case 1:
+          System.out.println("Introduce la descripcion");
+          String description = scanner.nextLine();
+          addTask(description);
+          break;
+        case 2:
+          listTask();
+          break;
+        default:
+          System.out.println("opción invalida");
+          break;
+      }
+      //scanner.close();
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+  }
+
+  public static void addTask(String description) {
+    Task newTask = new Task(nextId++, description);
+    tasks.add(newTask);
+    System.out.println("Task created with ID: " + newTask.getId());
+
+  }
+
+  public static void listTask() {
+    System.out.println("Lista de tareas: ");
+    for (Task tarea : tasks) {
+      System.out.println(tarea.getId() + " - " + tarea.getName());
+
     }
+  }
+
+  private static void showMenu() {
+    System.out.println("\n--- Menú ---");
+    System.out.println("1. Crear tarea");
+    System.out.println("2. Listar tareas");
+    System.out.println("3. Salir");
+    //System.out.print("Selecciona una opción: ");
+  }
+
 }
+//
+// private static void addTask(String description) {
+// // TODO Auto-generated method stub
+// throw new UnsupportedOperationException("Unimplemented method 'addTask'");
+// }
+// }
