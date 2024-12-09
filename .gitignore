@@ -6,3 +6,6 @@ build
 
 # Ignore Idea Files
 .idea*
+*classpath
+.project
+.vscode
