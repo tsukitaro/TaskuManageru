@@ -47,16 +47,17 @@ public class App {
     Scanner scanner = new Scanner(System.in);
     while (true) {
       showMenu();
-      int option = scanner.nextInt();
+      //int option = scanner.nextInt();
+      String option = scanner.nextLine();
       scanner.nextLine();
 
       switch (option) {
-        case 1:
+        case "1":
           System.out.println("Introduce la descripcion");
           String description = scanner.nextLine();
           addTask(description);
           break;
-        case 2:
+        case "2":
           listTask();
           break;
         default:
