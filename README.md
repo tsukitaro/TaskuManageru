@@ -5,8 +5,8 @@
 basic task manager to handle basic task functions as:
 
 - create Task with addTask[taskName]
-- Update and delete tasks
 - List tasks
+- Update and delete tasks
 - List tasks that are done
 - List tasks that are undone
 - List tasks that are in progress
