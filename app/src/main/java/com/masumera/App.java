@@ -3,12 +3,143 @@
  */
 package com.masumera;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import java.util.ArrayList;
+import java.util.Scanner;
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+/* 
+ * DONE implementar update
+ * TODO implementar persistencia con archivos json
+ * DONE implementar delete
+ *
+ */
+//import com.masumera.body.ManageTask;
+import com.masumera.body.Task;
+
+public class App {
+  public String getGreeting() {
+    return "Hello World!";
+  }
+
+  private static ArrayList<Task> tasks = new ArrayList<>();
+  private static int nextId = 1; // generate the unique IDs
+
+  public static void main(String[] args) {
+    // System.out.println(new App().getGreeting());
+    //if (args.length == 0) {
+    //  System.out.println("Use: java App <command> [arguments]");
+    //  System.out.println("Commands availables");
+    //  System.out.println("add <description> - create new taks");
+    //  System.out.println("list              - List all tasks");
+    //}
+
+    /*
+     * usando args pero necesita una implementacion de persistencia
+     */
+    //
+    //String command = args[0];
+    //
+    //switch (command) {
+    //  case "add":
+    //    String description = args[1];
+    //    addTask(description);
+    //    break;
+    //  case "list":
+    //    listTask();
+    //    break;
+    //}
+
+
+    Scanner scanner = new Scanner(System.in);
+    while (true) {
+      showMenu();
+      int option = scanner.nextInt();
+      // String option = scanner.nextLine();
+      scanner.nextLine();
+
+      switch (option) {
+        case 1:
+          System.out.println("Introduce la descripcion");
+          String description = scanner.nextLine();
+          addTask(description);
+          break;
+        case 2:
+          listTask();
+          break;
+        case 3:
+          System.out.println("Digita el Id de la tarea");
+          int selectedId = scanner.nextInt();
+          System.out.println("Escribe el nuevo titulo");
+          scanner.nextLine();
+          String newDescription = scanner.nextLine();
+          updateTask(selectedId, newDescription);
+          break;
+        case 4:
+          System.out.println("Digita el ID que deseas borrar");
+          int idToDelete = scanner.nextInt();
+          //scanner.nextLine();
+          deleteTask(idToDelete);
+          break;
+        case 5:
+          System.out.println("Saliendo...");
+          scanner.close();
+          return; // termina el programa
+        default:
+          System.out.println("opción invalida");
+          break;
+      }
     }
+   
+    // si ubico aqui el scanner.close se cierra la entrada, lo que no permite volver al menu
+  }
+
+  public static void addTask(String description) {
+    Task newTask = new Task(nextId++, description);
+    tasks.add(newTask);
+    System.out.println("Task created with ID: " + newTask.getId());
+  }
+
+  public static void listTask() {
+    System.out.println("Lista de tareas: ");
+    for (Task tarea : tasks) {
+      System.out.println(tarea.getId() + " - " + tarea.getName());
+    }
+  }
+
+  public static void updateTask(int ID, String description) {
+    for (Task tarea : tasks) {
+      if (ID == tarea.getId()) {
+        tarea.setName(description);
+        System.out.println("econtraste la tarea " + " - " + tarea.getId() + " " + tarea.getName());
+      }
+    } 
+  }
+
+  public static void deleteTask(int ID) {
+    for (Task tarea : tasks) {
+      if (ID == tarea.getId()) {
+        tasks.remove(ID-1);
+        System.out.println("Tarea con ID " + tarea.getId() + " Ha sido borrada");
+      }
+    }
+  }
+
+
+  private static void showMenu() {
+    System.out.println("\n--- Menú ---");
+    System.out.println("1. Crear tarea");
+    System.out.println("2. Listar tareas");
+    System.out.println("3. Actualizar tarea");
+    System.out.println("4. Borrar tarea");
+    System.out.println("5. Salir");
+    System.out.println("Selecciona una opción: ");
+  }
+
+
+
 }
+//
+// private static void addTask(String description) {
+// // TODO Auto-generated method stub
+// throw new UnsupportedOperationException("Unimplemented method 'addTask'");
+// }
+// }

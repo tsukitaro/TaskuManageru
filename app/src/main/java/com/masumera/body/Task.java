@@ -5,39 +5,29 @@ package com.masumera.body;
  */
 public class Task {
 
-  private String name;
-  private String body;
+  private int id;
 
-  private boolean status; 
+
+  private String name;;
+
+
+  
+  public int getId() {
+    return id;
+  }
 
   
 
-  
-
-  public Task(boolean status, String name, String body) {
-    this.status = status;
+  public Task(int id, String name) {
+    this.id = id;
     this.name = name;
-    this.body = body;
   }
   
-  public boolean isStatus() {
-    return status;
-  }
-  public void setStatus(boolean status) {
-    this.status = status;
-  }
   public String getName() {
     return name;
   }
   public void setName(String name) {
     this.name = name;
   }
-  public String getBody() {
-    return body;
-  }
-  public void setBody(String body) {
-    this.body = body;
-  }
-
   
 }
