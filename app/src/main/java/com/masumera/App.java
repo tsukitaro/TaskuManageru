@@ -47,33 +47,36 @@ public class App {
     Scanner scanner = new Scanner(System.in);
     while (true) {
       showMenu();
-      //int option = scanner.nextInt();
-      String option = scanner.nextLine();
+      int option = scanner.nextInt();
+      // String option = scanner.nextLine();
       scanner.nextLine();
 
       switch (option) {
-        case "1":
+        case 1:
           System.out.println("Introduce la descripcion");
           String description = scanner.nextLine();
           addTask(description);
           break;
-        case "2":
+        case 2:
           listTask();
           break;
+        case 3:
+          System.out.println("Saliendo...");
+          scanner.close();
+          return; // termina el programa
         default:
           System.out.println("opción invalida");
           break;
       }
-      //scanner.close();
     }
-
+   
+    // si ubico aqui el scanner.close se cierra la entrada, lo que no permite volver al menu
   }
 
   public static void addTask(String description) {
     Task newTask = new Task(nextId++, description);
     tasks.add(newTask);
     System.out.println("Task created with ID: " + newTask.getId());
-
   }
 
   public static void listTask() {
@@ -91,6 +94,8 @@ public class App {
     System.out.println("3. Salir");
     //System.out.print("Selecciona una opción: ");
   }
+
+
 
 }
 //
